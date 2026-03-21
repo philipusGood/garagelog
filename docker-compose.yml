@@ -1,0 +1,14 @@
+services:
+  garagelog:
+    image: ghcr.io/philipusgood/garagelog:latest
+    container_name: garagelog
+    ports:
+      - "5002:5002"
+    volumes:
+      # Persists the database and all uploaded documents
+      - /mnt/user/appdata/garagelog:/data
+    environment:
+      - NODE_ENV=production
+      - DATA_DIR=/data
+      - PORT=5002
+    restart: unless-stopped
