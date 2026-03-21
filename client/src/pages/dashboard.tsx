@@ -69,7 +69,6 @@ export default function DashboardPage() {
             {stats?.avgOilInterval != null && (
               <p className="text-xs text-muted-foreground mt-1">
                 avg {stats.avgOilInterval.toLocaleString()} km interval
-                <span className="ml-1 opacity-60">({stats.oilIntervalCount} gaps)</span>
               </p>
             )}
           </CardContent>
