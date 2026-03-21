@@ -225,5 +225,30 @@ export function getCarStats(carId: number) {
   const totalCost = (
     db.prepare("SELECT SUM(cost) as s FROM service_records WHERE car_id = ?").get(carId) as { s: number | null }
   ).s;
-  return { totalRecords, lastRecord, oilChanges, totalCost };
+
+  // Average oil change interval (km between consecutive oil changes)
+  const oilMileages = (
+    db.prepare(
+      `SELECT sr.mileage FROM service_records sr
+       JOIN record_tags rt ON rt.record_id = sr.id
+       WHERE sr.car_id = ? AND rt.tag = 'oil change'
+       ORDER BY sr.mileage ASC`
+    ).all(carId) as { mileage: number }[]
+  ).map((r) => r.mileage);
+
+  let avgOilInterval: number | null = null;
+  let oilIntervalCount = 0;
+  if (oilMileages.length >= 2) {
+    const intervals: number[] = [];
+    for (let i = 1; i < oilMileages.length; i++) {
+      const gap = oilMileages[i] - oilMileages[i - 1];
+      if (gap > 0) intervals.push(gap);
+    }
+    if (intervals.length > 0) {
+      avgOilInterval = Math.round(intervals.reduce((a, b) => a + b, 0) / intervals.length);
+      oilIntervalCount = intervals.length;
+    }
+  }
+
+  return { totalRecords, lastRecord, oilChanges, totalCost, avgOilInterval, oilIntervalCount };
 }

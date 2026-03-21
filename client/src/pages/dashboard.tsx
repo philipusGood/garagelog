@@ -11,6 +11,8 @@ interface Stats {
   totalRecords: number;
   oilChanges: number;
   totalCost: number | null;
+  avgOilInterval: number | null;
+  oilIntervalCount: number;
   lastRecord: {
     id: number; date: string; mileage: number; description: string; shop: string | null;
   } | null;
@@ -64,6 +66,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">{stats?.oilChanges ?? "—"}</p>
+            {stats?.avgOilInterval != null && (
+              <p className="text-xs text-muted-foreground mt-1">
+                avg {stats.avgOilInterval.toLocaleString()} km interval
+                <span className="ml-1 opacity-60">({stats.oilIntervalCount} gaps)</span>
+              </p>
+            )}
           </CardContent>
         </Card>
 
