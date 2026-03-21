@@ -12,6 +12,7 @@ import {
 import DashboardPage from "@/pages/dashboard";
 import RecordsPage from "@/pages/records";
 import ComponentsPage from "@/pages/components";
+import ComponentDetailPage from "@/pages/component-detail";
 import OilChangesPage from "@/pages/oil-changes";
 import ExportPage from "@/pages/export";
 import CarsPage from "@/pages/cars";
@@ -124,7 +125,9 @@ function AppLayout() {
           {/* Nav */}
           <nav className="flex-1 p-3 space-y-1 mt-2">
             {navItems.map((item) => {
-              const isActive = item.href === "/" ? location === "/" : location.startsWith(item.href);
+              const isActive = item.href === "/"
+        ? location === "/"
+        : location === item.href || location.startsWith(item.href + "/");
               return (
                 <Link
                   key={item.href}
@@ -184,6 +187,7 @@ function AppLayout() {
               <Route path="/" component={DashboardPage} />
               <Route path="/records" component={RecordsPage} />
               <Route path="/components" component={ComponentsPage} />
+              <Route path="/components/:tag" component={ComponentDetailPage} />
               <Route path="/oil" component={OilChangesPage} />
               <Route path="/export" component={ExportPage} />
               <Route path="/cars" component={CarsPage} />

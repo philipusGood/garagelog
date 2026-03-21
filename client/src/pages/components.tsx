@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { useCar } from "@/App";
 import { apiRequest } from "@/lib/queryClient";
 import { formatDate, formatMileage } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Search, Wrench } from "lucide-react";
+import { Search, Wrench, ChevronRight } from "lucide-react";
 
 interface ComponentSummary {
   tag: string;
@@ -67,14 +68,23 @@ export default function ComponentsPage() {
             </thead>
             <tbody className="divide-y divide-border">
               {filtered.map(c => (
-                <tr key={c.tag} className="hover:bg-muted/30 transition-colors">
-                  <td className="px-4 py-3 font-medium capitalize">{c.tag}</td>
+                <tr key={c.tag} className="hover:bg-muted/30 transition-colors group cursor-pointer">
+                  <td className="px-4 py-3">
+                    <Link href={`/components/${encodeURIComponent(c.tag)}`}>
+                      <a className="flex items-center gap-1.5 font-medium capitalize text-foreground hover:text-primary transition-colors">
+                        {c.tag}
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors" />
+                      </a>
+                    </Link>
+                  </td>
                   <td className="px-4 py-3 text-muted-foreground">{formatDate(c.last_date)}</td>
                   <td className="px-4 py-3 text-muted-foreground">{formatMileage(c.last_mileage)}</td>
                   <td className="px-4 py-3 text-right">
-                    <span className="inline-flex items-center justify-center h-5 min-w-[1.25rem] px-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
-                      {c.times_replaced}
-                    </span>
+                    <Link href={`/components/${encodeURIComponent(c.tag)}`}>
+                      <a className="inline-flex items-center justify-center h-5 min-w-[1.25rem] px-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors">
+                        {c.times_replaced}
+                      </a>
+                    </Link>
                   </td>
                 </tr>
               ))}
