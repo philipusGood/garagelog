@@ -5,7 +5,7 @@
  * Requires GarageLog to be running in Docker.
  */
 
-const BASE = "http://10.0.1.73:5002/api";
+const BASE = `${process.env.GARAGELOG_URL ?? "http://localhost:5002"}/api`;
 
 async function post(path, body) {
   const res = await fetch(`${BASE}${path}`, {
