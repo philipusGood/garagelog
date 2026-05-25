@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222 20% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 12%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 24 95% 50%;
+    --primary: 24 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 222 20% 12%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 10% 50%;
+    --accent: 220 14% 94%;
+    --accent-foreground: 222 20% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 12%;
+    --radius: 0.5rem;
+
+    --sidebar: 222 25% 14%;
+    --sidebar-foreground: 220 15% 88%;
+    --sidebar-border: 222 20% 20%;
+    --sidebar-primary: 24 95% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 20% 22%;
+    --sidebar-accent-foreground: 220 15% 95%;
+    --sidebar-ring: 24 95% 50%;
+
+    --font-sans: "Inter", sans-serif;
+    --font-mono: ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 222 25% 9%;
+    --foreground: 220 15% 92%;
+    --card: 222 25% 12%;
+    --card-foreground: 220 15% 92%;
+    --border: 222 20% 22%;
+    --input: 222 20% 22%;
+    --ring: 24 95% 50%;
+    --primary: 24 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 20% 18%;
+    --secondary-foreground: 220 15% 92%;
+    --muted: 222 20% 18%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 222 20% 18%;
+    --accent-foreground: 220 15% 92%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --popover: 222 25% 12%;
+    --popover-foreground: 220 15% 92%;
+
+    --sidebar: 222 30% 8%;
+    --sidebar-foreground: 220 15% 80%;
+    --sidebar-border: 222 25% 14%;
+    --sidebar-accent: 222 25% 15%;
+    --sidebar-accent-foreground: 220 15% 95%;
+  }
+
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans; }
+}
