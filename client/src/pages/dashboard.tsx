@@ -97,7 +97,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{formatCost(stats?.totalCost)}</p>
+            <p className="text-2xl sm:text-3xl font-bold truncate">{formatCost(stats?.totalCost)}</p>
           </CardContent>
         </Card>
       </div>

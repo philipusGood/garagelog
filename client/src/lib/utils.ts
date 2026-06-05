@@ -18,5 +18,5 @@ export function formatMileage(n: number | null | undefined) {
 
 export function formatCost(n: number | null | undefined) {
   if (n == null) return "—";
-  return "$" + n.toFixed(2);
+  return "$" + Math.round(n).toLocaleString("en-CA");
 }
